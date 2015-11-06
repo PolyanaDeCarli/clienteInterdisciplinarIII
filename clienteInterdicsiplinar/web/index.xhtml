@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:b="http://bootsfaces.net/ui"> 
+<h:head> 
+        <title>Sistema de Custos</title> 
+           </h:head> 
+    <h:body style="padding-top: 50px; padding-bottom: 20px;"> 
+        <b:navBar brand="SisCustos" inverse="true" fixed="top"> 
+            <b:navbarLinks> 
+              <b:dropMenu value="Cadastros"> 
+                <b:navLink value="Cargos" href="#"></b:navLink> 
+                <b:navLink value="Máquinas" href="#"></b:navLink> 
+                <b:navLink value="Matéria Prima" href="#"></b:navLink> 
+                <b:navLink value="Produtos" href="#"></b:navLink> 
+                   <b:navLink value="Pessoas" href="#"></b:navLink> 
+                </b:dropMenu>
+              <b:dropMenu value="Lançamentos"> 
+                <b:navLink value="Custos Fixos" href="#"></b:navLink> 
+                <b:navLink value="Custos Variáveis" href="#"></b:navLink> 
+                  <b:navLink value="Salários" href="#"></b:navLink> 
+                       </b:dropMenu> 
+            </b:navbarLinks> 
+            <h:form styleClass="navbar-form navbar-right"> 
+              <b:commandButton action="a" value="Sair" look="success" icon="chevron-right" iconAlign="right"/> 
+            </h:form> 
+        </b:navBar> 
+        <b:jumbotron> 
+            <b:container> 
+                <h2>Titulo do Curso</h2> 
+                <p>Descrição do curso. </p> 
+                <p> <a href="linkdocurso.html" class="btn btn-lg btn-info">Veja mais. »</a> </p> 
+            </b:container> 
+        </b:jumbotron> 
+        <b:container> 
+            <b:row> 
+                <b:column col-md="4"> 
+                    <h2>Trilha de aprendizado</h2> 
+                    <p>Acesse a trilha de aprendizado do seu curso e siga os passos para se aperfeiçoar. </p> 
+                    <p><b:button outcome="" value="Ver detalhes »"/></p> 
+                </b:column> 
+                <b:column col-md="4"> 
+                    <h2>Downloads</h2> 
+                    <p>Faça download do material de apoio do seu curso </p>
+                    <p>
+                        <b:button outcome="" value="Ver detalhes »"/></p> </b:column> 
+                <b:column col-md="4"> 
+                    <h2>Fórum</h2> 
+                    <p>Não deixe de interagir com outros alunos do curso e com seu professor</p> <p>
+                        <b:button outcome="" value="Acessar fórum »"/></p> </b:column> 
+            </b:row> <hr/> 
+            <footer> <p>© Fabio Gomes Rocha 2014</p> </footer> 
+        </b:container> 
+    </h:body> 
+</html>

@@ -1,0 +1,35 @@
+'<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./masterpages/newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:bnu="http://bootsfaces.net/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">   
+
+        <h:form>
+            <bnu:container>
+
+                <bnu:panel title="Manutenção de Cargos" collapsible="false">
+
+                    <h:inputHidden id="car_codigo" value="#{cargosController.cargo.car_codigo}" />
+                    <bnu:panelGrid colSpans="2,10">
+
+                        <h:outputLabel value="Descrição" />
+                        <bnu:inputText span="8" value="#{cargosController.cargo.car_descricao}"/>
+
+
+
+                    </bnu:panelGrid>     
+                    <bnu:commandButton value="Salvar" action="#{cargosController.adicionarCargo()}"></bnu:commandButton>
+                    <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaCargos"/>
+                </bnu:panel>
+            </bnu:container>
+
+
+        </h:form>  
+
+    </ui:define>
+
+</ui:composition>

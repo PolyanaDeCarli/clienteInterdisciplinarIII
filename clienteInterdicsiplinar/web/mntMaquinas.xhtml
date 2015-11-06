@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:bnu="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./masterpages/newTemplate.xhtml">
+
+            <ui:define name="content">
+                 <bnu:container>                                      
+                <h:form>
+                <bnu:panel title="Manutenção de Máquinas" collapsible="false">
+                     <h:inputHidden id="maq_codigo" value="#{maquinasController.maquina.maq_codigo}" />
+                    <bnu:panelGrid colSpans="2,10">                       
+    <h:outputLabel value="Descrição" />
+    <bnu:inputText style="margin-bottom: 5px" span="8" value="#{maquinasController.maquina.maq_descricao}"/>
+    <h:outputLabel value="Valor" />
+    <bnu:inputText style="margin-bottom: 5px" span="3" value="#{maquinasController.maquina.maq_valor}"/>
+    <h:outputLabel value="Depreciação" />
+    <bnu:inputText span="3" value="#{maquinasController.maquina.maq_depreciacao}"/>
+   
+</bnu:panelGrid> 
+                      <bnu:commandButton value="Salvar" action="#{maquinasController.adicionarMaquina()}"></bnu:commandButton>
+    <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaMaquinas"/>
+                </bnu:panel>
+                    
+                </h:form>   
+                    </bnu:container>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
