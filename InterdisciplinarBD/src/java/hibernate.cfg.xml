@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/bdInterdisciplinar</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/bdInterdisciplinar</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">123456</property>
     <mapping class="model.cargos"/>
@@ -16,5 +16,8 @@
     <mapping class="model.produto"/>
     <mapping class="model.cidades"/>
     <mapping class="model.salarios"/>
+    <mapping class="model.materiaprima_produtos"/>
+    <mapping class="model.maquinas_produtos"/>
+    <mapping class="model.sal_produto"/>
   </session-factory>
 </hibernate-configuration>

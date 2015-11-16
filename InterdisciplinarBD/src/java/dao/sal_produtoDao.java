@@ -6,7 +6,7 @@
 package dao;
 
 import java.util.List;
-import model.maquinas;
+import model.sal_produto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -15,11 +15,11 @@ import util.HibernateUtil;
  *
  * @author Larissa Cardoso
  */
-public class maquinasDao {
+public class sal_produtoDao {
 
     private Session session;
 
-    public maquinasDao() {
+    public sal_produtoDao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
@@ -30,42 +30,41 @@ public class maquinasDao {
         return session;
     }
 
-    public void insert(maquinas m) {
+    public void insert(sal_produto spro) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.save(m);
+        session.save(spro);
         t.commit();
         session.close();
     }
 
-    public void update(maquinas m) {
+    public void update(sal_produto spro) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.merge(m);
+        session.merge(spro);
         t.commit();
         session.close();
     }
 
-    public void delete(maquinas m) {
+    public void delete(sal_produto spro) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.delete(m);
+        session.delete(spro);
         t.commit();
         session.close();
     }
 
-    public maquinas findById(int id) {
+    public sal_produto findById(int id) {
         session = HibernateUtil.getSessionFactory().openSession();
-        maquinas m = (maquinas) session.get(maquinas.class, id);
+        sal_produto spro = (sal_produto) session.get(sal_produto.class, id);
         session.close();
-        return m;
+        return spro;
     }
 
-    public List<maquinas> findAll() {
+    public List<sal_produto> findAll() {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<maquinas> ls = session.createQuery("from maquinas ").list();
+        List<sal_produto> ls = session.createQuery("from sal_produtos spro ").list();
         session.close();
         return ls;
     }
-
 }

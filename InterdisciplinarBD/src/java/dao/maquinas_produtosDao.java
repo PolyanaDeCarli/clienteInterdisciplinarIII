@@ -6,7 +6,7 @@
 package dao;
 
 import java.util.List;
-import model.maquinas;
+import model.maquinas_produtos;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -15,11 +15,11 @@ import util.HibernateUtil;
  *
  * @author Larissa Cardoso
  */
-public class maquinasDao {
+public class maquinas_produtosDao {
 
     private Session session;
 
-    public maquinasDao() {
+    public maquinas_produtosDao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
@@ -30,40 +30,40 @@ public class maquinasDao {
         return session;
     }
 
-    public void insert(maquinas m) {
+    public void insert(maquinas_produtos mqp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.save(m);
+        session.save(mqp);
         t.commit();
         session.close();
     }
 
-    public void update(maquinas m) {
+    public void update(maquinas_produtos mqp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.merge(m);
+        session.merge(mqp);
         t.commit();
         session.close();
     }
 
-    public void delete(maquinas m) {
+    public void delete(maquinas_produtos mqp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.delete(m);
+        session.delete(mqp);
         t.commit();
         session.close();
     }
 
-    public maquinas findById(int id) {
+    public maquinas_produtos findById(int id) {
         session = HibernateUtil.getSessionFactory().openSession();
-        maquinas m = (maquinas) session.get(maquinas.class, id);
+        maquinas_produtos mqp = (maquinas_produtos) session.get(maquinas_produtos.class, id);
         session.close();
-        return m;
+        return mqp;
     }
 
-    public List<maquinas> findAll() {
+    public List<maquinas_produtos> findAll() {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<maquinas> ls = session.createQuery("from maquinas ").list();
+        List<maquinas_produtos> ls = session.createQuery("from maquinas_produtos mqp ").list();
         session.close();
         return ls;
     }

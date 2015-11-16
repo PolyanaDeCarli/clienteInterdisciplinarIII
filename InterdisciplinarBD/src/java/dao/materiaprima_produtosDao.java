@@ -6,7 +6,7 @@
 package dao;
 
 import java.util.List;
-import model.maquinas;
+import model.materiaprima_produtos;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
@@ -15,11 +15,11 @@ import util.HibernateUtil;
  *
  * @author Larissa Cardoso
  */
-public class maquinasDao {
+public class materiaprima_produtosDao {
 
     private Session session;
 
-    public maquinasDao() {
+    public materiaprima_produtosDao() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
@@ -30,40 +30,40 @@ public class maquinasDao {
         return session;
     }
 
-    public void insert(maquinas m) {
+    public void insert(materiaprima_produtos mp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.save(m);
+        session.save(mp);
         t.commit();
         session.close();
     }
 
-    public void update(maquinas m) {
+    public void update(materiaprima_produtos mp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.merge(m);
+        session.merge(mp);
         t.commit();
         session.close();
     }
 
-    public void delete(maquinas m) {
+    public void delete(materiaprima_produtos mp) {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.delete(m);
+        session.delete(mp);
         t.commit();
         session.close();
     }
 
-    public maquinas findById(int id) {
+    public materiaprima_produtos findById(int id) {
         session = HibernateUtil.getSessionFactory().openSession();
-        maquinas m = (maquinas) session.get(maquinas.class, id);
+        materiaprima_produtos mp = (materiaprima_produtos) session.get(materiaprima_produtos.class, id);
         session.close();
-        return m;
+        return mp;
     }
 
-    public List<maquinas> findAll() {
+    public List<materiaprima_produtos> findAll() {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<maquinas> ls = session.createQuery("from maquinas ").list();
+        List<materiaprima_produtos> ls = session.createQuery("from materiaprima_produtos mp ").list();
         session.close();
         return ls;
     }

@@ -35,6 +35,7 @@ public class ApplicationConfig extends Application {
         resources.add(resources.custos_variaveisResources.class);
         resources.add(resources.maquinasResource.class);
         resources.add(resources.materia_primaResource.class);
+        resources.add(resources.materiaprima_produtosResource.class);
         resources.add(resources.pessoasResource.class);
         resources.add(resources.produtoResource.class);
         resources.add(resources.salariosResource.class);

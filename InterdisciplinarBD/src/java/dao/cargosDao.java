@@ -63,7 +63,7 @@ public class cargosDao {
 
     public List<cargos> findAll() {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<cargos> ls = session.createQuery("from cargos").list();
+        List<cargos> ls = session.createQuery("from cargos order by car_codigo").list();
         session.close();
         return ls;
     }

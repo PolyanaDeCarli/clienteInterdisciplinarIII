@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +30,17 @@ public class maquinas implements Serializable {
     private String maq_descricao;
     private double maq_valor;
     private int maq_depreciacao;
+    @OneToOne
+    @JoinColumn(name = "cus_codigo")
+    private custos_fixos custos_fixos;
+
+    public custos_fixos getCustos_fixos() {
+        return custos_fixos;
+    }
+
+    public void setCustos_fixos(custos_fixos custos_fixos) {
+        this.custos_fixos = custos_fixos;
+    }
 
     public int getMaq_codigo() {
         return maq_codigo;

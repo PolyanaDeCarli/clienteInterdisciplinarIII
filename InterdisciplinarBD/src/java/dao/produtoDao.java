@@ -63,7 +63,8 @@ public class produtoDao {
 
     public List<produto> findAll() {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<produto> ls = session.createQuery("from produto").list();
+        List<produto> ls = session.createQuery("from produto p ").list();
+      //  List<produto> ls = session.createQuery("from produto p ").list();
         session.close();
         return ls;
     }

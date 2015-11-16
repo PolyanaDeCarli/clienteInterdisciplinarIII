@@ -5,6 +5,7 @@
  */
 package resources;
 
+import dao.custos_fixosDao;
 import dao.maquinasDao;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -14,6 +15,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import model.custos_fixos;
 import model.maquinas;
 
 /**
@@ -24,6 +26,7 @@ import model.maquinas;
 public class maquinasResource {
 
     maquinasDao mdao = new maquinasDao();
+    custos_fixosDao cusDao = new custos_fixosDao();
 
     public maquinasResource() {
     }
@@ -46,8 +49,19 @@ public class maquinasResource {
     @Consumes({"application/xml", "application/json"})
     public void save(maquinas m) {
         if (m.getMaq_codigo() == 0) {
+            custos_fixos cus = new custos_fixos();
+            cus.setCus_descricao("Depreciação Máquina " + m.getMaq_descricao());
+            //calcula o valor da depreciacao da máquina
+            cus.setCus_valor((m.getMaq_valor() / m.getMaq_depreciacao()) / 12);
+            cusDao.insert(cus);
+            m.setCustos_fixos(cus);
             mdao.insert(m);
         } else {
+            custos_fixos cus = m.getCustos_fixos();
+            //calcula o valor da depreciacao da máquina
+            cus.setCus_valor((m.getMaq_valor() / m.getMaq_depreciacao()) / 12);
+            cusDao.update(cus);
+            m.setCustos_fixos(cus);
             mdao.update(m);
         }
     }
