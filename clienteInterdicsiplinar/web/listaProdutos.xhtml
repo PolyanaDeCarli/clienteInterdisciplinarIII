@@ -2,45 +2,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:bnu="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    </h:head>
+      xmlns:bnu="http://bootsfaces.net/ui">
 
     <body>
 
         <ui:composition template="./masterpages/newTemplate.xhtml">
 
             <ui:define name="content">
-
-                <f:view>
+                  <f:view>
 
                     <h:form>
                         <bnu:container>
-                            <h:link outcome="mntCargos" styleClass="btn btn-success"  onclick="${cargosController.novo()}">
+                            <h:link outcome="mntProdutos" styleClass="btn btn-success"  onclick="${produtosController.novo()}">
                                 <i class="fa fa-plus"></i> Inserir</h:link>
-                            <div class="table-responsive">
+                  <div class="table-responsive">
                                 <h:dataTable id="customerlist"
-                                             value="#{cargosController.allCargos}" var="item"
+                                             value="#{produtosController.allProdutos}" var="item"
                                              class="table table-striped">
                                     <h:column>
                                         <f:facet name="header"> Código</f:facet>
-                                            #{item.car_codigo}
+                                            #{item.pro_codigo}
                                     </h:column>
-
                                     <h:column>
                                         <f:facet name="header"> Descrição</f:facet>
-                                            #{item.car_descricao}
-                                    </h:column>
+                                            #{item.pro_descricao}
+                                    </h:column>                                                                     
                                     <h:column headerClass="col-editar-header">
                                         <f:facet name="header">
                                             <h:outputText value="Editar"/>
                                         </f:facet>
-                                        <h:commandLink action="${cargosController.edit(item)}">
+                                        <h:commandLink action="${produtosController.edit(item)}">
                                             <i class="fa fa-pencil"></i> Editar
                                         </h:commandLink>
                                     </h:column>
@@ -49,7 +42,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Excluir"/>
                                         </f:facet>
-                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o ${item.car_descricao}?');" action="${cargosController.ExcluirCargo(item)}">
+                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o registro?');" action="${produtosController.ExcluirProduto(item)}">
                                             <i class="fa fa-trash"></i> Excluir
                                         </h:commandLink>
                                     </h:column>
@@ -60,7 +53,6 @@
                     </h:form>
 
                 </f:view>
-
             </ui:define>
 
         </ui:composition>

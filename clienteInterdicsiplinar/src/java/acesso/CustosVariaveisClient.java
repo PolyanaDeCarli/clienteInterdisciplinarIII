@@ -14,49 +14,51 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.custos_variaveis;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class CustosVariaveisClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public CustosVariaveisClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/custos_variaveis")
                 .port(8083).build();
         client = ClientBuilder.newClient();
+
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarCustosVariaveis(custos_variaveis cv) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(cv, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirCustoVariaveis(custos_variaveis cv) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{cuv_codigo}")
+                .resolveTemplate("cuv_codigo", cv.getCuv_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<custos_variaveis> getCustosVariaveis() {
+        List<custos_variaveis> cuv = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<custos_variaveis>>() {
                 });
-        return cargos;
+        return cuv;
     }
 
     public void close() {
         client.close();
     }
+
 }

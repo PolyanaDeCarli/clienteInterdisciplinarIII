@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:bnu="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
+     <h:head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -16,31 +16,34 @@
         <ui:composition template="./masterpages/newTemplate.xhtml">
 
             <ui:define name="content">
-
-                <f:view>
+                 <f:view>
 
                     <h:form>
                         <bnu:container>
-                            <h:link outcome="mntCargos" styleClass="btn btn-success"  onclick="${cargosController.novo()}">
+                            <h:link outcome="mntMateriaPrima" styleClass="btn btn-success"  onclick="${materiaPrimaController.novo()}">
                                 <i class="fa fa-plus"></i> Inserir</h:link>
                             <div class="table-responsive">
                                 <h:dataTable id="customerlist"
-                                             value="#{cargosController.allCargos}" var="item"
+                                             value="#{materiaPrimaController.allMateriaPrima}" var="item"
                                              class="table table-striped">
                                     <h:column>
                                         <f:facet name="header"> Código</f:facet>
-                                            #{item.car_codigo}
+                                            #{item.mat_codigo}
                                     </h:column>
 
                                     <h:column>
                                         <f:facet name="header"> Descrição</f:facet>
-                                            #{item.car_descricao}
+                                            #{item.mat_descricao}
                                     </h:column>
+                                    <h:column>
+                                        <f:facet name="header"> Preço</f:facet>
+                                            #{item.mat_preco}
+                                    </h:column>                                   
                                     <h:column headerClass="col-editar-header">
                                         <f:facet name="header">
                                             <h:outputText value="Editar"/>
                                         </f:facet>
-                                        <h:commandLink action="${cargosController.edit(item)}">
+                                        <h:commandLink action="${materiaPrimaController.edit(item)}">
                                             <i class="fa fa-pencil"></i> Editar
                                         </h:commandLink>
                                     </h:column>
@@ -49,7 +52,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Excluir"/>
                                         </f:facet>
-                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o ${item.car_descricao}?');" action="${cargosController.ExcluirCargo(item)}">
+                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o ${item.mat_descricao}?');" action="${materiaPrimaController.ExcluirMateriaPrima(item)}">
                                             <i class="fa fa-trash"></i> Excluir
                                         </h:commandLink>
                                     </h:column>

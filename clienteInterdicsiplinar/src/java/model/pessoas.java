@@ -21,15 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Larissa Cardoso
  */
-@Entity
 @XmlRootElement
 public class pessoas implements Serializable {
-    @Id
-    @SequenceGenerator(name = "pes_sequence", sequenceName = "pes_sequence")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "pes_sequence")    
+
     private int pes_codigo;
-    @ManyToOne
-    @JoinColumn(name = "cid_codigo")
     private cidades cidades;
     private String pes_nome;
     private String pes_razaosocial;
@@ -165,6 +160,5 @@ public class pessoas implements Serializable {
     public void setPes_status(boolean pes_status) {
         this.pes_status = pes_status;
     }
-  
-    
+
 }

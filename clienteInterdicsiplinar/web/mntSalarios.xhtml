@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:bnu="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterpages/newTemplate.xhtml">
+
+            <ui:define name="content">
+                <bnu:container>                                      
+                    <h:form id="frmSalarios">
+                        <bnu:panel title="Lançamento de Salários" collapsible="false">
+                            <h:inputHidden id="sal_codigo" value="#{salariosController.salario.sal_codigo}" />
+                            <bnu:panelGrid colSpans="2,10">                       
+                                <h:outputLabel value="Cargo:"/>
+                                <bnu:selectOneMenu style="width: 500px;  " id="cargo" value="#{salariosController.salario.cargos}" >
+                                    <f:selectItems value="#{cargosController.allCargos}" var="cargoVar" itemValue="#{cargoVar}"
+                                                   itemLabel="#{cargoVar.car_descricao}" />
+                                </bnu:selectOneMenu>
+                                <h:outputLabel value="Valor:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="4" value="#{salariosController.salario.sal_valor}"/>
+                                <h:outputLabel value="Data:" />
+                                <div style="width: 100px;margin-bottom: 5px; ">
+                                    <bnu:datepicker lang="pt-BR" value="#{salariosController.salario.sal_data}"/>                     
+                                </div>
+                            </bnu:panelGrid> 
+                            <bnu:commandButton value="Salvar" action="#{salariosController.adicionarSalario()}"></bnu:commandButton>
+                            <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaSalarios"/>
+                        </bnu:panel>
+
+                    </h:form>   
+                </bnu:container>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:bnu="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterpages/newTemplate.xhtml">
+
+            <ui:define name="content">
+                <bnu:container>                                      
+                    <h:form>
+                        <bnu:panel title="Lançamento de Custos Fixos" collapsible="false">
+                            <h:inputHidden id="cus_codigo" value="#{custosFixosController.custos.cus_codigo}" />
+                            <bnu:panelGrid colSpans="2,10">                       
+                                <h:outputLabel value="Descrição:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" value="#{custosFixosController.custos.cus_descricao}"/>
+                                <h:outputLabel value="Valor:" />
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="3" value="#{custosFixosController.custos.cus_valor}"/>
+                               
+                            </bnu:panelGrid> 
+                            <bnu:commandButton value="Salvar" action="#{custosFixosController.adicionarCusto()}"></bnu:commandButton>
+                            <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaCustos"/>
+                        </bnu:panel>
+
+                    </h:form>   
+                </bnu:container>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

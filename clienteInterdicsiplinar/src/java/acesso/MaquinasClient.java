@@ -21,31 +21,43 @@ import model.maquinas;
  * @author Larissa Cardoso
  */
 public class MaquinasClient {
+
     private URI uri;
-       private Client client;
+    private Client client;
 
     public MaquinasClient() {
         uri = UriBuilder
-             .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/maquinas")
-             .port(8083).build();              
-             client = ClientBuilder.newClient();
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/maquinas")
+                .port(8083).build();
+        client = ClientBuilder.newClient();
     }
-    public String adicionarMaquina(maquinas maquina){
-             Response response = client.target(uri)
-             .request()
-             .post(Entity.entity(maquina,MediaType.APPLICATION_XML));
-             return response.getStatusInfo().getReasonPhrase();
-       }
-       
-       public List<maquinas> getMaquinas(){
-             List<maquinas> maquinas = client.target(uri)
-             .request()
-             .get(new GenericType<List<maquinas>>(){});
-              return maquinas;
-       }
-       
-       public void close(){
-             client.close();
-       }
+
+    public String salvarMaquina(maquinas maquina) {
+        Response response = client.target(uri)
+                .request()
+                .post(Entity.entity(maquina, MediaType.APPLICATION_XML));
+        return response.getStatusInfo().getReasonPhrase();
+    }
+
+    public String excluirMaquina(maquinas maquina) {
+        Response response = client.target(uri)
+                .path("/{maq_codigo}")
+                .resolveTemplate("maq_codigo", maquina.getMaq_codigo())
+                .request(MediaType.APPLICATION_XML)
+                .delete();
+        return response.getStatusInfo().getReasonPhrase();
+    }
+
+    public List<maquinas> getMaquinas() {
+        List<maquinas> maquinas = client.target(uri)
+                .request()
+                .get(new GenericType<List<maquinas>>() {
+                });
+        return maquinas;
+    }
+
+    public void close() {
+        client.close();
+    }
 
 }

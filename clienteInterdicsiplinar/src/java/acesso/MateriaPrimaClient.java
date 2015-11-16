@@ -14,49 +14,51 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.materia_prima;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class MateriaPrimaClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public MateriaPrimaClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/materia_prima")
                 .port(8083).build();
         client = ClientBuilder.newClient();
+
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarMateriaPrima(materia_prima materia) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(materia, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirMateriaPrima(materia_prima materia) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{mat_codigo}")
+                .resolveTemplate("mat_codigo", materia.getMat_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<materia_prima> getMateriaPrima() {
+        List<materia_prima> mat_prima = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<materia_prima>>() {
                 });
-        return cargos;
+        return mat_prima;
     }
 
     public void close() {
         client.close();
     }
+
 }

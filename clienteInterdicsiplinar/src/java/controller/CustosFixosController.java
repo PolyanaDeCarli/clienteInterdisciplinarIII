@@ -5,8 +5,7 @@
  */
 package controller;
 
-import acesso.CargosClient;
-import acesso.MaquinasClient;
+import acesso.CustosFixosClient;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -14,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import model.maquinas;
+import model.custos_fixos;
 
 /**
  *
@@ -22,69 +21,68 @@ import model.maquinas;
  */
 @ManagedBean
 @SessionScoped
-public class MaquinasController {
+public class CustosFixosController {
 
     @Inject
-    private MaquinasClient mc = new MaquinasClient();
-    private maquinas maquina = new maquinas();
-    List<maquinas> maquinas = new ArrayList<>();
+    private CustosFixosClient cfc = new CustosFixosClient();
+    private custos_fixos custos = new custos_fixos();
+    List<custos_fixos> lsMCustos = new ArrayList<>();
     FacesContext facesContext = FacesContext.getCurrentInstance();
 
-    public MaquinasController() {
+    public CustosFixosController() {
     }
 
-    public maquinas getMaquina() {
-        return maquina;
+    public custos_fixos getCustos() {
+        return custos;
     }
 
-    public void setMaquina(maquinas maq) {
-        this.maquina = maq;
+    public void setCusto(custos_fixos cus) {
+        this.custos = cus;
     }
 
-    public String adicionarMaquina() {
+    public String adicionarCusto() {
         String status = "";
         try {
 
-            status = mc.salvarMaquina(maquina);
+            status = cfc.salvarCustos(custos);
 
         } catch (Exception ex) {
             facesContext
                     .addMessage(status, new FacesMessage(
                                     FacesMessage.SEVERITY_ERROR,
-                                    "Máquina não foi incluída!", ex.getMessage()));
+                                    "Custo não foi incluído!", ex.getMessage()));
         }
-        maquinas = getAllMaquinas();
-        return "listaMaquinas";
+        lsMCustos = getAllCustos();
+        return "listaCustos";
     }
 
-    public String ExcluirMaquina(maquinas m) {
+    public String ExcluirCustos(custos_fixos c) {
         String status = "";
         try {
-            status = mc.excluirMaquina(m);
+            status = cfc.excluirCusto(c);
 
         } catch (Exception ex) {
             facesContext
                     .addMessage(status, new FacesMessage(
                                     FacesMessage.SEVERITY_ERROR,
-                                    "Cargo não foi incluído!", ex.getMessage()));
+                                    "Custo não foi incluído!", ex.getMessage()));
         }
-        maquinas = getAllMaquinas();
-        return "listaMaquinas";
+        lsMCustos = getAllCustos();
+        return "listaCustos";
     }
 
-    public String edit(maquinas m) {
-        maquina = m;
-        return "mntMaquinas";
+    public String edit(custos_fixos c) {
+        custos = c;
+        return "mntCustos";
     }
 
     public String novo() {
-        maquina = new maquinas();
-        return "mntMaquinas";
+        custos = new custos_fixos();
+        return "mntCustos";
     }
 
-    public List<maquinas> getAllMaquinas() {
-        maquinas = mc.getMaquinas();
-        return maquinas;
+    public List<custos_fixos> getAllCustos() {
+        lsMCustos = cfc.getCusto();
+        return lsMCustos;
     }
-
 }

@@ -5,8 +5,7 @@
  */
 package controller;
 
-import acesso.CargosClient;
-import acesso.MaquinasClient;
+import acesso.PessoasClient;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -14,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import model.maquinas;
+import model.pessoas;
 
 /**
  *
@@ -22,69 +21,68 @@ import model.maquinas;
  */
 @ManagedBean
 @SessionScoped
-public class MaquinasController {
+public class PessoasController {
 
     @Inject
-    private MaquinasClient mc = new MaquinasClient();
-    private maquinas maquina = new maquinas();
-    List<maquinas> maquinas = new ArrayList<>();
+    private PessoasClient pesc = new PessoasClient();
+    private pessoas pes = new pessoas();
+    List<pessoas> lsPessoa = new ArrayList<>();
     FacesContext facesContext = FacesContext.getCurrentInstance();
 
-    public MaquinasController() {
+    public PessoasController() {
     }
 
-    public maquinas getMaquina() {
-        return maquina;
+    public pessoas getPessoa() {
+        return pes;
     }
 
-    public void setMaquina(maquinas maq) {
-        this.maquina = maq;
+    public void setPessoa(pessoas p) {
+        this.pes = p;
     }
 
-    public String adicionarMaquina() {
+    public String adicionarPessoa() {
         String status = "";
         try {
-
-            status = mc.salvarMaquina(maquina);
+            status = pesc.salvarPessoas(pes);
 
         } catch (Exception ex) {
             facesContext
                     .addMessage(status, new FacesMessage(
                                     FacesMessage.SEVERITY_ERROR,
-                                    "Máquina não foi incluída!", ex.getMessage()));
+                                    "Pessoa não foi incluída!", ex.getMessage()));
         }
-        maquinas = getAllMaquinas();
-        return "listaMaquinas";
+        lsPessoa = getAllPessoas();
+        return "listaPessoas";
     }
 
-    public String ExcluirMaquina(maquinas m) {
+    public String ExcluirPessoa(pessoas p) {
         String status = "";
         try {
-            status = mc.excluirMaquina(m);
+            status = pesc.excluirPessoa(p);
 
         } catch (Exception ex) {
             facesContext
                     .addMessage(status, new FacesMessage(
                                     FacesMessage.SEVERITY_ERROR,
-                                    "Cargo não foi incluído!", ex.getMessage()));
+                                    "Pessoa não foi excluída!", ex.getMessage()));
         }
-        maquinas = getAllMaquinas();
-        return "listaMaquinas";
+        lsPessoa = getAllPessoas();
+        return "listaPessoas";
     }
 
-    public String edit(maquinas m) {
-        maquina = m;
-        return "mntMaquinas";
+    public String edit(pessoas p) {
+        pes = p;
+        return "mntPessoas";
     }
 
     public String novo() {
-        maquina = new maquinas();
-        return "mntMaquinas";
+        pes = new pessoas();
+        return "mntPessoas";
     }
 
-    public List<maquinas> getAllMaquinas() {
-        maquinas = mc.getMaquinas();
-        return maquinas;
+    public List<pessoas> getAllPessoas() {
+        lsPessoa = pesc.getPessoas();
+        return lsPessoa;
     }
 
 }

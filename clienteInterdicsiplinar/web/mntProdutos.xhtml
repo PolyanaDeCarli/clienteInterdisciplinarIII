@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:bnu="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterpages/newTemplate.xhtml">
+
+            <ui:define name="content">
+                <bnu:container>                                      
+                    <h:form>
+                        <bnu:panel title="Manutenção de Produtos" collapsible="false">
+                            <h:inputHidden id="pro_codigo" value="#{produtosController.produto.pro_codigo}" />
+                            <bnu:panelGrid colSpans="2,10">                       
+                                <h:outputLabel value="Descrição:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" value="#{produtosController.produto.pro_descricao}"/>
+                                <h:outputLabel value="Matéria-Prima:" for="mat_prima" />
+
+                                <bnu:selectOneMenu style="width: 500px;  " id="mat_prima" title="Matéria Prima" >
+                                    <f:selectItems value="#{materiaPrimaController.allMateriaPrima}" var="materiaVar" itemValue="#{materiaVar.mat_codigo}"
+                                                   itemLabel="#{materiaVar.mat_descricao}" />
+                                    <bnu:commandButton value="Add" action="#{produtosController.adicionarMateriaPrima(produtosController.produto.pro_codigo,materiaVar.mat_codigo)}"></bnu:commandButton> 
+                                </bnu:selectOneMenu>
+                                <div class="table-responsive">                              
+                                    <h:dataTable id="listaMateriaPrima" value="#{produtosController.produto.lsMat}" var="itemMat"
+                                                 class="table table-striped">
+                                        <h:column>
+                                            <f:facet name="header"> Código</f:facet>
+                                                #{itemMat.materia_prima.mat_codigo}
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header"> Descrição</f:facet>
+                                                #{itemMat.materia_prima.mat_descricao}
+                                        </h:column>       
+                                        <h:column>
+                                            <f:facet name="header"> Valor</f:facet>
+                                                #{itemMat.materia_prima.mat_preco}
+                                        </h:column>       
+                                        <h:column headerClass="col-excluir-header">
+                                            <f:facet name="header">
+                                                <h:outputText value="Excluir"/>
+                                            </f:facet>
+                                            <h:commandLink onclick="return confirm('Deseja realmente excluir o ${itemMat.materia_prima.mat_descricao}?');" >
+                                                <i class="fa fa-trash"></i> Excluir
+                                            </h:commandLink>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </bnu:panelGrid> 
+                            <bnu:commandButton value="Salvar" action="#{produtosController.adicionarProduto()}"></bnu:commandButton>
+                            <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaProdutos"/>
+                        </bnu:panel>
+
+                    </h:form>   
+                </bnu:container>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

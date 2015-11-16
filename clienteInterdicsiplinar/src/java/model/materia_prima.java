@@ -17,12 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Larissa Cardoso
  */
-@Entity
 @XmlRootElement
 public class materia_prima implements Serializable {
-    @Id
-    @SequenceGenerator(name = "mat_sequence", sequenceName = "mat_sequence")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "mat_sequence")
+
     private int mat_codigo;
     private String mat_descricao;
     private double mat_preco;

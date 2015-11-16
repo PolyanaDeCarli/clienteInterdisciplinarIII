@@ -14,46 +14,46 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.salarios;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class SalariosClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public SalariosClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/salarios")
                 .port(8083).build();
         client = ClientBuilder.newClient();
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarSalarios(salarios sal) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(sal, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirSalario(salarios sal) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{sal_codigo}")
+                .resolveTemplate("sal_codigo", sal.getSal_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<salarios> getSalarios() {
+        List<salarios> sal = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<salarios>>() {
                 });
-        return cargos;
+        return sal;
     }
 
     public void close() {

@@ -14,46 +14,46 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.custos_fixos;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class CustosFixosClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public CustosFixosClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/custos_fixos")
                 .port(8083).build();
         client = ClientBuilder.newClient();
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarCustos(custos_fixos custo) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(custo, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirCusto(custos_fixos custo) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{cus_codigo}")
+                .resolveTemplate("cus_codigo", custo.getCus_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<custos_fixos> getCusto() {
+        List<custos_fixos> custo = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<custos_fixos>>() {
                 });
-        return cargos;
+        return custo;
     }
 
     public void close() {

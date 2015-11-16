@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./masterpages/newTemplate.xhtml"
+                xmlns:bnu="http://bootsfaces.net/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+          <bnu:container>                                      
+                <h:form>
+                <bnu:panel title="Manutenção de Matéria Prima" collapsible="false">
+                    <h:inputHidden id="mat_codigo" value="#{materiaPrimaController.materiaPrima.mat_codigo}" />
+                    <bnu:panelGrid colSpans="2,10">                       
+    <h:outputLabel value="Descrição:" />
+    <bnu:inputText style="margin-bottom: 5px" span="8" value="#{materiaPrimaController.materiaPrima.mat_descricao}"/>
+    <h:outputLabel value="Preço:" />
+    <bnu:inputText style="margin-bottom: 5px" span="3" value="#{materiaPrimaController.materiaPrima.mat_preco}"/>
+      
+</bnu:panelGrid> 
+                    <bnu:commandButton value="Salvar" action="#{materiaPrimaController.adicionarMateriaPrima()}"></bnu:commandButton>
+    <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaMateriaPrima"/>
+                </bnu:panel>
+                    
+                </h:form>   
+                    </bnu:container>
+    </ui:define>
+
+</ui:composition>

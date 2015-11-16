@@ -14,46 +14,46 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.produto;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class ProdutosClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public ProdutosClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/produto")
                 .port(8083).build();
         client = ClientBuilder.newClient();
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarProdutos(produto pro) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(pro, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirProduto(produto pro) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{pro_codigo}")
+                .resolveTemplate("pro_codigo", pro.getPro_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<produto> getProdutos() {
+        List<produto> produto = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<produto>>() {
                 });
-        return cargos;
+        return produto;
     }
 
     public void close() {

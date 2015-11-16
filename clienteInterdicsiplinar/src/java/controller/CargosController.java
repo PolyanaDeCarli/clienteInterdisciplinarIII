@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.cargos;
+import net.bootsfaces.component.Alert;
 
 /**
  *
@@ -28,7 +29,7 @@ public class CargosController {
     @Inject
     private CargosClient cc = new CargosClient();
     private cargos cargo = new cargos();
-    List<cargos> cargos = new ArrayList<>();
+    List<cargos> lscargos = new ArrayList<>();
     FacesContext facesContext = FacesContext.getCurrentInstance();
 
     public CargosController() {
@@ -53,13 +54,13 @@ public class CargosController {
                                     FacesMessage.SEVERITY_ERROR,
                                     "Cargo não foi incluído!", ex.getMessage()));
         }
-        cargos = getAllCargos();
+        lscargos = getAllCargos();
         return "listaCargos";
     }
 
     public List<cargos> getAllCargos() {
-        cargos = cc.getCargos();
-        return cargos;
+        lscargos = cc.getCargos();
+        return lscargos;
     }
 
     public String ExcluirCargo(cargos c) {
@@ -73,8 +74,16 @@ public class CargosController {
                                     FacesMessage.SEVERITY_ERROR,
                                     "Cargo não foi incluído!", ex.getMessage()));
         }
-        cargos = getAllCargos();
+        lscargos = getAllCargos();
         return "listaCargos";
+    }
+    public String edit(cargos c) {
+        cargo = c;
+        return "mntCargos";
+    }
+    public String novo() {
+        cargo = new cargos();
+        return "mntCargos";
     }
 
     /*public void getCargoById(){

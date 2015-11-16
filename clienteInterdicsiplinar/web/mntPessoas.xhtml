@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:bnu="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <body>
+
+        <ui:composition template="./masterpages/newTemplate.xhtml">
+
+            <ui:define name="content">
+                <bnu:container>                                      
+                    <h:form id="frmPessoa">
+                        <bnu:panel title="Manutenção de Pessoas" collapsible="false">
+                            <h:inputHidden id="pro_codigo" value="#{pessoasController.pessoa.pes_codigo}" />
+                            <bnu:panelGrid  colSpans="3,9">                       
+                                <h:outputLabel value="Nome:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" value="#{pessoasController.pessoa.pes_nome}"/>
+                                <h:outputLabel value="Razão Social:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" value="#{pessoasController.pessoa.pes_razaosocial}"/>
+                                <h:outputLabel value="CPF/CNPJ:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="3" id="pesCPF" value="#{pessoasController.pessoa.pes_cpfcnpj}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" onkeypress="formataCpfCnpj('frmPessoa:pesCPF');" onblur="validaCpf('frmPessoa:pesCPF');"/>
+                                <h:outputLabel value="RG:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="3" id="pesRG" value="#{pessoasController.pessoa.pes_rg}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="Telefone:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="3" id="pesTelefone" value="#{pessoasController.pessoa.pes_telefone}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="E-mail:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" id="pesEmail" value="#{pessoasController.pessoa.pes_email}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="Cidade:" for="cidade" />
+
+                                <bnu:selectOneMenu style="width: 500px;  " id="cidade" value="#{pessoasController.pessoa.cidades}" >
+                                    <f:selectItems value="#{cidadesController.allCidades}" var="cidadeVar" itemValue="#{cidadeVar}"
+                                                   itemLabel="#{cidadeVar.cid_nome}" />
+                                </bnu:selectOneMenu>
+                                <h:outputLabel value="Endereço:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="8" id="pesEndereco" value="#{pessoasController.pessoa.pes_endereco}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="Bairro:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="5" id="pesBairro" value="#{pessoasController.pessoa.pes_bairro}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="Usuário:"/>
+                                <bnu:inputText style="margin-bottom: 5px; margin-left: -16px" span="5" id="pesUsuario" value="#{pessoasController.pessoa.pes_login}" pt:required="required"
+                                               styleClass="form-control" pt:autofocus="" />
+                                <h:outputLabel value="Senha:"/>
+                                <bnu:inputSecret style="margin-bottom: 5px; margin-left: -16px" span="5" id="pesSenha" value="#{pessoasController.pessoa.pes_senha}" pt:required="required" 
+                                                 styleClass="form-control" pt:autofocus="" />
+                           
+                                <h:outputLabel value="Ativo:"/>
+                                <bnu:selectBooleanCheckbox style="margin-bottom: 5px; margin-left: -16px" id="pesStatus" value="#{pessoasController.pessoa.pes_status}" pt:required="required" 
+                                                        />
+                            </bnu:panelGrid> 
+                            <bnu:commandButton value="Salvar" action="#{pessoasController.adicionarPessoa()}"></bnu:commandButton>
+                            <bnu:button value="Cancelar" style="margin-left: 5px" outcome="listaPessoas"/>
+                        </bnu:panel>
+
+                    </h:form>   
+                </bnu:container>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

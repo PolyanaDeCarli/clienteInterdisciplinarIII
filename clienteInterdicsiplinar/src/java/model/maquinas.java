@@ -19,6 +19,15 @@ public class maquinas implements Serializable {
     private String maq_descricao;
     private double maq_valor;
     private int maq_depreciacao;
+    private custos_fixos custos_fixos;
+
+    public custos_fixos getCustos_fixos() {
+        return custos_fixos;
+    }
+
+    public void setCustos_fixos(custos_fixos custos_fixos) {
+        this.custos_fixos = custos_fixos;
+    }
 
     public int getMaq_codigo() {
         return maq_codigo;

@@ -14,49 +14,50 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import model.cargos;
+import model.pessoas;
 
 /**
  *
  * @author Larissa Cardoso
  */
-public class CargosClient {
+public class PessoasClient {
 
     private URI uri;
     private Client client;
 
-    public CargosClient() {
+    public PessoasClient() {
         uri = UriBuilder
-                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/cargos")
+                .fromUri("http://localhost:8083/InterdisciplinarBD/webresources/pessoas")
                 .port(8083).build();
         client = ClientBuilder.newClient();
     }
 
-    public String salvarCargo(cargos cargo) {
+    public String salvarPessoas(pessoas pes) {
         Response response = client.target(uri)
                 .request()
-                .post(Entity.entity(cargo, MediaType.APPLICATION_XML));
+                .post(Entity.entity(pes, MediaType.APPLICATION_XML));
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public String excluirCargo(cargos cargo) {
+    public String excluirPessoa(pessoas pes) {
         Response response = client.target(uri)
-                .path("/{car_codigo}")
-                .resolveTemplate("car_codigo", cargo.getCar_codigo())
+                .path("/{pes_codigo}")
+                .resolveTemplate("pes_codigo", pes.getPes_codigo())
                 .request(MediaType.APPLICATION_XML)
                 .delete();
         return response.getStatusInfo().getReasonPhrase();
     }
 
-    public List<cargos> getCargos() {
-        List<cargos> cargos = client.target(uri)
+    public List<pessoas> getPessoas() {
+        List<pessoas> pessoa = client.target(uri)
                 .request()
-                .get(new GenericType<List<cargos>>() {
+                .get(new GenericType<List<pessoas>>() {
                 });
-        return cargos;
+        return pessoa;
     }
 
     public void close() {
         client.close();
     }
+
 }

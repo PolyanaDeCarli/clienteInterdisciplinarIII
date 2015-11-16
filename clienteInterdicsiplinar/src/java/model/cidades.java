@@ -14,11 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Larissa Cardoso
  */
-@Entity
 @XmlRootElement
 public class cidades implements Serializable {
 
-    @Id
     private int cid_codigo;
     private String cid_nome;
     private char cid_uf;

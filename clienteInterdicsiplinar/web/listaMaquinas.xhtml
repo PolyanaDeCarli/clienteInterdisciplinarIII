@@ -20,7 +20,7 @@
 
                     <h:form>
                         <bnu:container>
-                            <h:link outcome="mntMaquinas" styleClass="btn btn-success">
+                            <h:link outcome="mntMaquinas" styleClass="btn btn-success"  onclick="${maquinasController.novo()}">
                                 <i class="fa fa-plus"></i> Inserir</h:link>
                             <div class="table-responsive">
                                 <h:dataTable id="customerlist"
@@ -47,7 +47,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Editar"/>
                                         </f:facet>
-                                        <h:commandLink >
+                                        <h:commandLink action="${maquinasController.edit(item)}">
                                             <i class="fa fa-pencil"></i> Editar
                                         </h:commandLink>
                                     </h:column>
@@ -56,7 +56,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Excluir"/>
                                         </f:facet>
-                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o ${maquinasController.maquina.maq_descricao}?');" >
+                                        <h:commandLink onclick="return confirm('Deseja realmente excluir o ${item.maq_descricao}?');" action="${maquinasController.ExcluirMaquina(item)}">
                                             <i class="fa fa-trash"></i> Excluir
                                         </h:commandLink>
                                     </h:column>
